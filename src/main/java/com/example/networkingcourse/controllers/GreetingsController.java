@@ -20,4 +20,11 @@ public class GreetingsController
         model.addAttribute("message", message);
         return "greeting"; // Name of the view (greeting.html)
     }
+
+    @GetMapping("/unsafe")
+    public String greetingUnsafe(@RequestParam String message, Model model)
+    {
+        model.addAttribute("message", "Message " + message);
+        return "greetingWithoutEscape"; // Name of the view (greeting.html)
+    }
 }
