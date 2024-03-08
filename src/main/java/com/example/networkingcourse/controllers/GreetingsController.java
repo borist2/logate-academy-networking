@@ -3,6 +3,7 @@ package com.example.networkingcourse.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -26,5 +27,19 @@ public class GreetingsController
     {
         model.addAttribute("message", "Message " + message);
         return "greetingWithoutEscape"; // Name of the view (greeting.html)
+    }
+
+
+    @GetMapping("/form")
+    public String greetingSubmit(Model model)
+    {
+        return "greetingSubmit";
+    }
+
+    @PostMapping
+    public String greetingSubmited(@RequestParam String name, Model model)
+    {
+        model.addAttribute("name", name);
+        return "greetingSubmited";
     }
 }
