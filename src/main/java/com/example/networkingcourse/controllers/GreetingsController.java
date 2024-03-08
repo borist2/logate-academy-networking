@@ -6,14 +6,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/greetings")
 public class GreetingsController
 {
     @GetMapping
-    public String greeting(@RequestParam("message") String message, Model model)
+    public String greeting(@RequestParam(value = "message", required = false) String requestMessage, Model model)
     {
-        model.addAttribute("message", "Custom message: " + message);
+        var message = Optional.ofNullable(requestMessage)
+                .map(m -> "Custom message: " + m).orElse("Hello world.");
+        model.addAttribute("message", message);
         return "greeting"; // Name of the view (greeting.html)
     }
 }
