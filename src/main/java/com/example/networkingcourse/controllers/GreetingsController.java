@@ -1,11 +1,9 @@
 package com.example.networkingcourse.controllers;
 
+import com.example.networkingcourse.model.UserData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
@@ -32,7 +30,7 @@ public class GreetingsController
 
 
     @GetMapping("/form")
-    public String greetingSubmit(Model model)
+    public String greetingSubmit()
     {
         return "greetingSubmit";
     }
@@ -50,4 +48,22 @@ public class GreetingsController
         return "greetingSubmited";
     }
 
+    @GetMapping("/userData")
+    public String greetingUserData()
+    {
+        return "greetingUserDataForm";
+    }
+
+    @PostMapping("submit/userdata")
+    public String greetingUserData(@ModelAttribute UserData userData, RedirectAttributes redirectAttributes)
+    {
+        redirectAttributes.addFlashAttribute("userData", userData);
+        return "redirect:/greetings/submitted/userdata"; // Redirect to prevent duplicate submissions
+    }
+
+    @GetMapping("/submitted/userdata")
+    public String greetingSubmittedUserData()
+    {
+        return "greetingSubmitedUserData";
+    }
 }
