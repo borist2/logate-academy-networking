@@ -18,21 +18,21 @@ public class GreetingsController
         var message = Optional.ofNullable(requestMessage)
                 .map(m -> "Custom message: " + m).orElse("Hello world.");
         model.addAttribute("message", message);
-        return "greeting"; // Name of the view (greeting.html)
+        return "greetings/greeting"; // Name of the view (greeting.html)
     }
 
     @GetMapping("/unsafe")
     public String greetingUnsafe(@RequestParam String message, Model model)
     {
         model.addAttribute("message", "Message " + message);
-        return "greetingWithoutEscape"; // Name of the view (greeting.html)
+        return "greetings/greetingWithoutEscape"; // Name of the view (greeting.html)
     }
 
 
     @GetMapping("/form")
     public String greetingSubmit()
     {
-        return "greetingSubmit";
+        return "greetings/greetingSubmit";
     }
 
     @PostMapping
@@ -45,13 +45,13 @@ public class GreetingsController
     @GetMapping("/submitted")
     public String greetingSubmited()
     {
-        return "greetingSubmited";
+        return "greetings/greetingSubmited";
     }
 
     @GetMapping("/userData")
     public String greetingUserData()
     {
-        return "greetingUserDataForm";
+        return "greetings/greetingUserDataForm";
     }
 
     @PostMapping("submit/userdata")
@@ -64,7 +64,7 @@ public class GreetingsController
     @GetMapping("/submitted/userdata")
     public String greetingSubmittedUserData()
     {
-        return "greetingSubmitedUserData";
+        return "greetings/greetingSubmitedUserData";
     }
 
     @GetMapping("/edit")
@@ -72,7 +72,7 @@ public class GreetingsController
     {
         var userData = new UserData("Test 1", "test1@test.com");
         model.addAttribute("userData", userData);
-        return "greetingEditUserDataForm";
+        return "greetings/greetingEditUserDataForm";
     }
 
     @PutMapping("/edit")
