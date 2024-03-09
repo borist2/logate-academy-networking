@@ -66,4 +66,20 @@ public class GreetingsController
     {
         return "greetingSubmitedUserData";
     }
+
+    @GetMapping("/edit")
+    public String editUserDataForm(Model model)
+    {
+        var userData = new UserData("Test 1", "test1@test.com");
+        model.addAttribute("userData", userData);
+        return "greetingEditUserDataForm";
+    }
+
+    @PutMapping("/edit")
+    public String editUserData(@ModelAttribute UserData userData, RedirectAttributes redirectAttributes)
+    {
+        redirectAttributes.addFlashAttribute("userData", userData);
+        return "redirect:/greetings/submitted/userdata"; // Redirect to prevent duplicate submissions
+    }
+
 }
