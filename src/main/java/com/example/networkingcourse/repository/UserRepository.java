@@ -35,4 +35,6 @@ public interface UserRepository extends Repository<User, Integer>, QuerydslPredi
     void deleteById(Integer id);
 
     List<User> findAllByIdIsGreaterThanEqualAndIdIsLessThan (Integer from, Integer to);
+
+    boolean existsById(Integer id);
 }
