@@ -1,0 +1,12 @@
+Index page
+
+<p th:if="${#authorization.expression('isAuthenticated()')}">
+    You are authenticated.
+</p>
+<p th:unless="${#authorization.expression('isAuthenticated()')}">
+    You are not authenticated.
+</p>
+
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Logout</button>
+</form>
