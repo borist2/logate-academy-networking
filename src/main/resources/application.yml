@@ -20,6 +20,17 @@ spring:
         one-indexed-parameters: true
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.xml
+  ssl:
+    bundle:
+      jks:
+        springbootssl:
+          key:
+            alias: springbootssl
+          keystore:
+            location: classpath:springbootssl.p12
+            password: password
+            type: PKCS12
+
 
 logging:
   level:
@@ -29,3 +40,14 @@ logging:
         orm:
           jdbc:
             bind: TRACE
+
+
+# keytool -genkeypair -alias springbootssl -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore springbootssl.p12 -validity 3650
+server:
+  ssl:
+    bundle: "springbootssl"
+    enabled-protocols: TLSv1.3
+  port: 8443
+
+jwt:
+  secret: ZMvXyNKUp05KkbQtDz+BrSirKl5Cg8XNILGmcgQxYrA=

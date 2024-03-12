@@ -2,11 +2,9 @@ package com.example.networkingcourse.controllers;
 
 import com.example.networkingcourse.dto.CreateEditProductDTO;
 import com.example.networkingcourse.dto.ProductInfoDTO;
-import com.example.networkingcourse.model.Product;
 import com.example.networkingcourse.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
