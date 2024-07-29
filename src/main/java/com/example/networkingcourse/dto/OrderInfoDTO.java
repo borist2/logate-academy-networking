@@ -11,13 +11,13 @@ public record OrderInfoDTO(Integer id, String customerName, List<OrderItemInfoDT
 {
     public static OrderInfoDTO fromModel(Order order)
     {
-        var items = Optional.ofNullable(order.getItems())
-                .orElseGet(() -> new ArrayList<>(0))
-                .stream()
-                .map(OrderItemInfoDTO::fromModel)
-                .toList();
+//        var items = Optional.ofNullable(order.getItems())
+//                .orElseGet(() -> new ArrayList<>(0))
+//                .stream()
+//                .map(OrderItemInfoDTO::fromModel)
+//                .toList();
 
-        return new OrderInfoDTO(order.getId(), order.getCustomerName(), items);
+        return new OrderInfoDTO(order.getId(), order.getCustomerName(), new ArrayList<>());
     }
 
     private record OrderItemInfoDTO(Integer id, String productName, Double price)

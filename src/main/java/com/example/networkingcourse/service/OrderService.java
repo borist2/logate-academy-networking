@@ -25,6 +25,7 @@ public class OrderService
         return savedOrder;
     }
 
+    @Transactional(readOnly = true)
     public List<Order> listOrders()
     {
         var orders = orderRepository.findAll();

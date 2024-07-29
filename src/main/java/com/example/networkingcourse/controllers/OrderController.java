@@ -27,11 +27,15 @@ public class OrderController
     @GetMapping
     public ResponseEntity<List<OrderInfoDTO>> listOrders()
     {
-        var orders = orderService.listOrders()
+        var orders = orderService.listOrders();
+        var responseOrders = orders
                 .stream()
                 .map(OrderInfoDTO::fromModel)
                 .toList();
 
-        return ResponseEntity.ok(orders);
+//        orders.get(0).getItems(); // No Loading
+//        orders.get(0).getItems().size(); // Loading
+
+        return ResponseEntity.ok(responseOrders);
     }
 }
