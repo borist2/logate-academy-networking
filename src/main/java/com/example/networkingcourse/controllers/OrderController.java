@@ -1,6 +1,7 @@
 package com.example.networkingcourse.controllers;
 
 import com.example.networkingcourse.dto.CreateOrderDTO;
+import com.example.networkingcourse.dto.EditOrderDTO;
 import com.example.networkingcourse.dto.OrderInfoDTO;
 import com.example.networkingcourse.model.OrderItem;
 import com.example.networkingcourse.service.OrderService;
@@ -37,5 +38,13 @@ public class OrderController
 //        orders.get(0).getItems().size(); // Loading
 
         return ResponseEntity.ok(responseOrders);
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<OrderInfoDTO> editOrder(@PathVariable Integer id, @RequestBody EditOrderDTO editOrderDTO)
+    {
+        var orderForSave = editOrderDTO.toDomain(id);
+        var savedOrder = orderService.saveOrder(orderForSave);
+        return ResponseEntity.ok(OrderInfoDTO.fromModel(savedOrder));
     }
 }
