@@ -26,11 +26,12 @@ public record EditOrderDTO(String customerName, List<EditOrderItemDTO> items)
         return order;
     }
 
-    private record EditOrderItemDTO(Long id, String productName, Double price)
+    private record EditOrderItemDTO(Integer id, String productName, Double price)
     {
         private OrderItem toDomain(Order order)
         {
             var orderItem = new OrderItem();
+            orderItem.setId(this.id);
             orderItem.setProductName(this.productName);
             orderItem.setPrice(this.price);
             orderItem.setOrder(order);
