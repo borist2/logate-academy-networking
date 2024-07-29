@@ -8,10 +8,13 @@
 <form th:action="@{/users/edit/{id}(id=${user.id})}" th:method="PUT" th:object="${user}">
 
     <label for="name">Name</label>
-    <input name="name" id="name" th:value="*{getFirstName}"/>
+    <input name="name" id="name" th:value="*{name}"/>
 
     <label for="email">Email</label>
     <input name="email" id="email" th:value="*{email}"/>
+
+    <label for="phone">Phone</label>
+    <input name="phone" id="phone" th:value="*{name}"/>
 
     <input type="submit" value="Edit"/>
 </form>

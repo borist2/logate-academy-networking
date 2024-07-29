@@ -1,14 +1,11 @@
 package com.example.networkingcourse.controllers;
 
 import com.example.networkingcourse.dto.UserCreateEditDTO;
-import com.example.networkingcourse.dto.UserListDTO;
-import com.example.networkingcourse.model.QUser;
 import com.example.networkingcourse.model.User;
 import com.example.networkingcourse.model.projections.UserIdNameProjection;
 import com.example.networkingcourse.repository.UserRepository;
 import com.example.networkingcourse.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.collections4.IterableUtils;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +23,7 @@ public class UserController
     private final UserService userService;
 
     @GetMapping
-    public String userList(Model model, Pageable pageable, @RequestParam("searchName") String searchName)
+    public String userList(Model model, Pageable pageable, @RequestParam(value = "searchName", required = false) String searchName)
     {
         var users = userService.listUsers(pageable, searchName);
         model.addAttribute("users", users);
@@ -81,7 +78,7 @@ public class UserController
 //        user.setId(id);
         var user = new User();
         user.setId(id);
-        user.setFirstName(requestUser.name());
+        user.setName(requestUser.name());
         user.setEmail(requestUser.email());
         user.setPhone(requestUser.phone());
 
