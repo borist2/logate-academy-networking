@@ -1,15 +1,8 @@
 package com.example.networkingcourse.repository;
 
 import com.example.networkingcourse.model.User;
-import com.example.networkingcourse.model.projections.UserIdNameProjection;
-import com.example.networkingcourse.model.projections.UserNameEmailConcatenatedProjection;
-import com.querydsl.core.types.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.jpa.repository.support.QuerydslJpaPredicateExecutor;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.Repository;
 
