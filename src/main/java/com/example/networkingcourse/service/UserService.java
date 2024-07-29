@@ -34,7 +34,7 @@ public class UserService
 
         if (searchName != null)
         {
-            var predicate = QUser.user.firstName.like(searchName);
+            var predicate = QUser.user.name.like(searchName);
 
             return IterableUtils.toList(userRepository.findAll(predicate));
         }
