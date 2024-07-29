@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class OrderService
@@ -18,8 +20,14 @@ public class OrderService
     public Order saveOrder(Order order)
     {
         var savedOrder = orderRepository.save(order);
-        savedOrder.getItems().forEach(orderItemRepository::save);
+//        savedOrder.getItems().forEach(orderItemRepository::save);
 
         return savedOrder;
+    }
+
+    public List<Order> listOrders()
+    {
+        var orders = orderRepository.findAll();
+        return orders;
     }
 }

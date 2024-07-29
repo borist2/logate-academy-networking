@@ -19,3 +19,11 @@ spring:
         one-indexed-parameters: true
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.xml
+
+logging:
+  level:
+    org:
+      hibernate:
+        orm:
+          jdbc:
+            bind: TRACE
