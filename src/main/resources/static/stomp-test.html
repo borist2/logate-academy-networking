@@ -26,9 +26,18 @@
                     console.log("2. Response body: [" + e.body + "]");
                 });
 
+
+                var subscription3 = client.subscribe("/topic/direct", (e) => {
+                    console.log(e);
+
+                    console.log("3. Response body for direct: [" + e.body + "]");
+                });
+
                 client.send("/app/chat.sendMessageWithResponse", {}, '{"message": "Test 1"}');
 
                 client.send("/app/chat.sendMessageWithResponseOtherTopic", {}, '{"message": "Other topic test 1"}');
+
+                client.send("/topic/direct", {}, '{"message": "Direct topic message"}');
 
 
             });
