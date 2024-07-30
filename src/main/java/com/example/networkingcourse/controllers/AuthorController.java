@@ -1,7 +1,6 @@
 package com.example.networkingcourse.controllers;
 
 import com.example.networkingcourse.model.Author;
-import com.example.networkingcourse.repository.AuthorRepository;
 import com.example.networkingcourse.service.AuthorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

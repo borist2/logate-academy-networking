@@ -1,13 +1,7 @@
 package com.example.networkingcourse.service;
 
 import com.example.networkingcourse.model.Order;
-import com.example.networkingcourse.repository.OrderItemRepository;
 import com.example.networkingcourse.repository.OrderRepository;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.JoinType;
-import jakarta.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

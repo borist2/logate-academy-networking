@@ -3,7 +3,6 @@ package com.example.networkingcourse.controllers;
 import com.example.networkingcourse.dto.CreateOrderDTO;
 import com.example.networkingcourse.dto.EditOrderDTO;
 import com.example.networkingcourse.dto.OrderInfoDTO;
-import com.example.networkingcourse.model.OrderItem;
 import com.example.networkingcourse.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
