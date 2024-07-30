@@ -1,6 +1,8 @@
 package com.example.networkingcourse.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.core.userdetails.User;
@@ -10,11 +12,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.stereotype.Controller;
 
-@Controller
+@Configuration
+@RequiredArgsConstructor
 public class WebSecurityConfig
 {
+
+    private final RESTAuthenticationEntryPoint restAuthenticationEntryPoint;
+    private final HtmlAuthenticationEntryPoint htmlAuthenticationEntryPoint;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
@@ -31,7 +36,12 @@ public class WebSecurityConfig
                         .defaultSuccessUrl("/", true)
                         .permitAll()
                 )
-                .logout(LogoutConfigurer::permitAll);
+                .logout(LogoutConfigurer::permitAll)
+                .exceptionHandling(exceptionHandling ->
+                        exceptionHandling
+                                .defaultAuthenticationEntryPointFor(restAuthenticationEntryPoint, request -> request.getRequestURI().startsWith("/api"))
+                                .defaultAuthenticationEntryPointFor(htmlAuthenticationEntryPoint, request -> request.getRequestURI().startsWith("/"))
+                );
 
         return http.build();
     }
