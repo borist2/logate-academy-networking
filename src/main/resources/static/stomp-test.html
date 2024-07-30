@@ -47,6 +47,13 @@
                 });
 
 
+                var subscription4 = client.subscribe("/topic/new-messages", (e) => {
+                    console.log(e);
+
+                    console.log("4. Response body for subscription mapping: [" + e.body + "]");
+                });
+
+
             });
         }
 
