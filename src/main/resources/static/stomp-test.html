@@ -40,6 +40,13 @@
                 client.send("/topic/direct", {}, '{"message": "Direct topic message"}');
 
 
+                var subscription4 = client.subscribe("/app/messages", (e) => {
+                    console.log(e);
+
+                    console.log("4. Response body for subscription mapping: [" + e.body + "]");
+                });
+
+
             });
         }
 
