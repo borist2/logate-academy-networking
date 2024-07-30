@@ -17,6 +17,7 @@ public class WebsocketConfig implements WebSocketConfigurer
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry)
     {
-        registry.addHandler(basicWebSocketHandler, "/basic-ws");
+        registry.addHandler(basicWebSocketHandler, "/basic-ws")
+                .withSockJS();
     }
 }
