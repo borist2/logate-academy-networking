@@ -19,12 +19,12 @@ public class ProductService
     public List<Product> findAll()
     {
         var products = productRepository.findAll();
-        if (!products.isEmpty())
-        {
-            var product = products.get(0);
-            product.setName(product.getName() + " Updated from method");
-            anotherProductService.saveProduct(product);
-        }
+//        if (!products.isEmpty())
+//        {
+//            var product = products.get(0);
+//            product.setName(product.getName() + " Updated from method");
+//            anotherProductService.saveProduct(product);
+//        }
 
         return products;
     }
