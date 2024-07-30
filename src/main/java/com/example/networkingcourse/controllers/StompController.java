@@ -4,6 +4,7 @@ import com.example.networkingcourse.dto.ChatMessageDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,8 +19,15 @@ public class StompController
 
 
     @MessageMapping("/chat.sendMessageWithResponse")
-    public void sendMessageWithReponse(@Payload ChatMessageDTO chatMessage)
+    public String sendMessageWithResponse(@Payload ChatMessageDTO chatMessage)
     {
-        log.info("Received message [{}]", chatMessage);
+        return "Response: " + chatMessage.message();
+    }
+
+    @MessageMapping("/chat.sendMessageWithResponseOtherTopic")
+    @SendTo("/topic/all")
+    public String sendMessageWithResponseOtherTopic(@Payload ChatMessageDTO chatMessage)
+    {
+        return "Response on other topic: " + chatMessage.message();
     }
 }

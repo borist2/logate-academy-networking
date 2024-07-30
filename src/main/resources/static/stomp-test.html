@@ -14,7 +14,23 @@
             client.connect({}, () => {
                 console.log("Connected");
 
-                client.send("/app/chat.sendMessage", {}, '{"message": "Test 1"}');
+                var subscription1 = client.subscribe("/topic/chat.sendMessageWithResponse", (e) => {
+                    console.log(e);
+
+                    console.log("1. Response body: [" + e.body + "]");
+                });
+
+                var subscription2 = client.subscribe("/topic/all", (e) => {
+                    console.log(e);
+
+                    console.log("2. Response body: [" + e.body + "]");
+                });
+
+                client.send("/app/chat.sendMessageWithResponse", {}, '{"message": "Test 1"}');
+
+                client.send("/app/chat.sendMessageWithResponseOtherTopic", {}, '{"message": "Other topic test 1"}');
+
+
             });
         }
 
