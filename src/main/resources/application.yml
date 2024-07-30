@@ -23,6 +23,7 @@ spring:
 
 logging:
   level:
+    ROOT: TRACE
     org:
       hibernate:
         orm:
