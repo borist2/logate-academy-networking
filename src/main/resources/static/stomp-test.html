@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <title>WebSocket Test</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
+    <script type="text/javascript">
+
+        function init() {
+
+            const client = new Stomp.client("ws://localhost:8080/stomp", ['v12.stomp']);
+            client.connect({}, () => {
+                console.log("Connected");
+
+                client.send("/app/chat.sendMessage", {}, '{"message": "Test 1"}');
+            });
+        }
+
+        window.addEventListener("load", init, false);
+
+    </script>
+</head>
+
+<body>
+<h2>WebSocket Test</h2>
+
+<div id="output"></div>
+</body>
+
+</html>
